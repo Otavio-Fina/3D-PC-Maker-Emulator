@@ -177,7 +177,6 @@
 - **Three.js + React Three Fiber:** Renderização 3D performática com ecossistema React
 - **Drei:** Componentes helpers para Three.js (controls, loaders, utilities)
 - **React Spring:** Animações fluidas e micro-interactions
-- **TailwindCSS:** Styling utilitário e design system
 
 #### Frontend Core
 - **React 18 + TypeScript:** Base da aplicação com tipagem segura

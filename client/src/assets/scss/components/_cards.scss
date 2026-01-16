@@ -1,0 +1,278 @@
+// Card Components
+
+.card {
+  @include card-base;
+  
+  &--hover {
+    @include card-hover;
+  }
+  
+  &--interactive {
+    cursor: pointer;
+    transition: all $transition-fast;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-lg;
+    }
+  }
+  
+  &--elevated {
+    box-shadow: $shadow-md;
+    
+    &:hover {
+      box-shadow: $shadow-lg;
+    }
+  }
+  
+  &--bordered {
+    border: 1px solid $border-primary;
+  }
+  
+  &--transparent {
+    background-color: transparent;
+    border: none;
+  }
+  
+  &--compact {
+    padding: $spacing-sm;
+  }
+  
+  &--spacious {
+    padding: $spacing-xl;
+  }
+}
+
+.card-header {
+  padding: $spacing-md;
+  border-bottom: 1px solid $border-primary;
+  
+  .card--compact & {
+    padding: $spacing-sm;
+  }
+  
+  .card--spacious & {
+    padding: $spacing-lg;
+  }
+}
+
+.card-body {
+  padding: $spacing-md;
+  
+  .card--compact & {
+    padding: $spacing-sm;
+  }
+  
+  .card--spacious & {
+    padding: $spacing-lg;
+  }
+}
+
+.card-footer {
+  padding: $spacing-md;
+  border-top: 1px solid $border-primary;
+  
+  .card--compact & {
+    padding: $spacing-sm;
+  }
+  
+  .card--spacious & {
+    padding: $spacing-lg;
+  }
+}
+
+.card-title {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $text-primary;
+  margin-bottom: $spacing-sm;
+}
+
+.card-subtitle {
+  font-size: $font-size-sm;
+  color: $text-muted;
+  margin-bottom: $spacing-md;
+}
+
+.card-text {
+  color: $text-secondary;
+  line-height: $line-height-relaxed;
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  
+  &--top {
+    border-top-left-radius: $radius-md;
+    border-top-right-radius: $radius-md;
+  }
+  
+  &--bottom {
+    border-bottom-left-radius: $radius-md;
+    border-bottom-right-radius: $radius-md;
+  }
+}
+
+.card-overlay {
+  position: relative;
+  
+  .card-overlay-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: $text-inverse;
+    padding: $spacing-md;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+}
+
+// Component card specific styles
+.component-card {
+  @include card-base;
+  @include card-hover;
+  
+  .component-image {
+    height: 12rem;
+    background-color: $bg-tertiary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    border-top-left-radius: $radius-md;
+    border-top-right-radius: $radius-md;
+  }
+  
+  .component-info {
+    padding: $spacing-md;
+  }
+  
+  .component-name {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $text-primary;
+    margin-bottom: $spacing-xs;
+  }
+  
+  .component-brand {
+    font-size: $font-size-sm;
+    color: $text-muted;
+    margin-bottom: $spacing-sm;
+  }
+  
+  .component-specs {
+    font-size: $font-size-sm;
+    color: $text-secondary;
+    margin-bottom: $spacing-md;
+  }
+  
+  .component-price {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $primary-color;
+    margin-bottom: $spacing-md;
+  }
+  
+  .component-actions {
+    display: flex;
+    gap: $spacing-sm;
+  }
+}
+
+// Build card specific styles
+.build-card {
+  @include card-base;
+  @include card-hover;
+  
+  .build-header {
+    padding: $spacing-md;
+    border-bottom: 1px solid $border-primary;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .build-name {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $text-primary;
+  }
+  
+  .build-price {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $primary-color;
+  }
+  
+  .build-components {
+    padding: $spacing-md;
+  }
+  
+  .build-component {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing-xs 0;
+    border-bottom: 1px solid $border-secondary;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  .build-component-name {
+    font-size: $font-size-sm;
+    color: $text-secondary;
+  }
+  
+  .build-component-value {
+    font-size: $font-size-sm;
+    color: $text-primary;
+    font-weight: $font-weight-medium;
+  }
+  
+  .build-performance {
+    padding: $spacing-md;
+    border-top: 1px solid $border-primary;
+  }
+  
+  .performance-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: $spacing-xs;
+    
+    .performance-label {
+      flex: 0 0 80px;
+      font-size: $font-size-xs;
+      color: $text-muted;
+    }
+    
+    .progress-bar {
+      flex: 1;
+      height: 4px;
+      background-color: $bg-tertiary;
+      border-radius: 2px;
+      overflow: hidden;
+      margin: 0 $spacing-sm;
+      
+      .progress-fill {
+        height: 100%;
+        border-radius: 2px;
+        transition: width $transition-normal;
+      }
+    }
+    
+    .performance-value {
+      flex: 0 0 30px;
+      font-size: $font-size-xs;
+      color: $text-primary;
+      font-weight: $font-weight-medium;
+    }
+  }
+}

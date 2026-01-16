@@ -1,0 +1,226 @@
+// Responsive breakpoints
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) { @content; }
+  }
+  @if $breakpoint == md {
+    @media (min-width: $breakpoint-md) { @content; }
+  }
+  @if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) { @content; }
+  }
+  @if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) { @content; }
+  }
+  @if $breakpoint == 2xl {
+    @media (min-width: $breakpoint-2xl) { @content; }
+  }
+}
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// Button styles
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-md;
+  border: none;
+  border-radius: $radius-md;
+  font-family: $font-family-sans;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-sm;
+  line-height: $line-height-tight;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all $transition-fast;
+  user-select: none;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background-color: $primary-color;
+  color: $text-inverse;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-dark;
+    transform: translateY(-1px);
+    box-shadow: $shadow-md;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background-color: $bg-tertiary;
+  color: $text-primary;
+  border: 1px solid $border-primary;
+
+  &:hover:not(:disabled) {
+    background-color: $bg-hover;
+    border-color: $primary-color;
+  }
+}
+
+// Card styles
+@mixin card-base {
+  background-color: $bg-card;
+  border: 1px solid $border-primary;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-sm;
+  transition: all $transition-normal;
+}
+
+@mixin card-hover {
+  &:hover {
+    box-shadow: $shadow-md;
+    border-color: $border-secondary;
+    transform: translateY(-2px);
+  }
+}
+
+@mixin card {
+  background-color: $bg-card;
+  border: 1px solid $border-primary;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-sm;
+  transition: all $transition-normal;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    border-color: $border-secondary;
+  }
+}
+
+// Input styles
+@mixin input-base {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  background-color: $bg-secondary;
+  border: 1px solid $border-primary;
+  border-radius: $radius-md;
+  color: $text-primary;
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  transition: all $transition-fast;
+
+  &::placeholder {
+    color: $text-muted;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $border-focus;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Scrollbar styles
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $bg-secondary;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $border-primary;
+    border-radius: $radius-full;
+
+    &:hover {
+      background: $border-secondary;
+    }
+  }
+}
+
+// Text truncation
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin truncate-lines($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Loading animation
+@mixin loading-spinner {
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  animation: spin 1s linear infinite;
+}
+
+// Glass morphism effect
+@mixin glass {
+  background: rgba($bg-secondary, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba($border-primary, 0.5);
+}
+
+// Gradient text
+@mixin gradient-text($start: $primary-color, $end: $secondary-color) {
+  background: linear-gradient(135deg, $start, $end);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// Hover lift effect
+@mixin hover-lift {
+  transition: transform $transition-normal, box-shadow $transition-normal;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+  }
+}

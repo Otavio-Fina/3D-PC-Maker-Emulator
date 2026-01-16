@@ -1,0 +1,56 @@
+// SCSS Functions
+
+// Convert px to rem
+@function rem($pixels, $context: 16) {
+  @return calc($pixels / $context) * 1rem;
+}
+
+// Convert px to em
+@function em($pixels, $context: 16) {
+  @return calc($pixels / $context) * 1em;
+}
+
+// Strip units from value
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return calc($number / ($number * 0 + 1));
+  }
+  @return $number;
+}
+
+// Get color from palette with opacity
+@function color($color, $opacity: 1) {
+  @if type-of($color) == 'color' {
+    @return rgba($color, $opacity);
+  }
+  @return $color;
+}
+
+// Calculate contrast color
+@function contrast-color($color) {
+  @if (lightness($color) > 60) {
+    @return #000000;
+  } @else {
+    @return #ffffff;
+  }
+}
+
+// Generate z-index values
+@function z($layer) {
+  $z-indexes: (
+    'dropdown': 1000,
+    'sticky': 1020,
+    'fixed': 1030,
+    'modal-backdrop': 1040,
+    'modal': 1050,
+    'popover': 1060,
+    'tooltip': 1070
+  );
+  
+  @return map-get($z-indexes, $layer);
+}
+
+// Generate responsive font size
+@function responsive-font-size($min-size, $max-size, $min-vw: 320, $max-vw: 1200) {
+  @return clamp(#{$min-size}, #{$min-size} + #{$max-size - $min-size} * ((100vw - #{$min-vw}) / #{$max-vw - $min-vw}), #{$max-size});
+}

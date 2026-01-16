@@ -1,0 +1,75 @@
+{
+  "name": "3d-pc-maker-emulator",
+  "version": "1.0.0",
+  "description": "3D PC Builder Emulator - Build and customize your PC in 3D",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:client": "npm run dev --workspace=client",
+    "dev:server": "npm run dev --workspace=server",
+    "build": "npm run build --workspace=client && npm run build --workspace=server",
+    "build:client": "npm run build --workspace=client",
+    "build:server": "npm run build --workspace=server",
+    "start": "npm run start --workspace=server",
+    "test": "npm run test --workspaces",
+    "lint": "npm run lint --workspaces",
+    "lint:fix": "npm run lint:fix --workspaces",
+    "clean": "npm run clean --workspaces && rm -rf node_modules",
+    "install:all": "npm install && npm install --workspaces",
+    "setup": "npm run install:all && npm run setup:env",
+    "setup:env": "cp client/.env.example client/.env && cp server/.env.example server/.env",
+    "migrate": "npm run migrate --workspace=server",
+    "seed": "npm run seed --workspace=server",
+    "db:reset": "npm run db:reset --workspace=server"
+  },
+  "keywords": [
+    "pc-builder",
+    "3d",
+    "hardware",
+    "react",
+    "threejs",
+    "nodejs",
+    "typescript",
+    "monorepo"
+  ],
+  "author": "3D PC Maker Emulator Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/3D-PC-Maker-Emulator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/3D-PC-Maker-Emulator/issues"
+  },
+  "homepage": "https://github.com/your-username/3D-PC-Maker-Emulator#readme",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,scss,css}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}

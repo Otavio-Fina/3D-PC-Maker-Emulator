@@ -1,0 +1,121 @@
+// Button Components
+
+.btn {
+  @include button-base;
+  
+  &--primary {
+    @include button-primary;
+  }
+  
+  &--secondary {
+    @include button-secondary;
+  }
+  
+  &--sm {
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-sm;
+  }
+  
+  &--lg {
+    padding: $spacing-md $spacing-lg;
+    font-size: $font-size-lg;
+  }
+  
+  &--xl {
+    padding: $spacing-lg $spacing-xl;
+    font-size: $font-size-xl;
+  }
+  
+  &--full {
+    width: 100%;
+  }
+  
+  &--icon {
+    padding: $spacing-sm;
+    aspect-ratio: 1;
+  }
+  
+  &--loading {
+    position: relative;
+    color: transparent;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1rem;
+      height: 1rem;
+      margin: -0.5rem 0 0 -0.5rem;
+      border: 2px solid currentColor;
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: spin 1s linear infinite;
+    }
+  }
+  
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// Button group
+.btn-group {
+  display: flex;
+  border-radius: $radius-md;
+  overflow: hidden;
+  
+  .btn {
+    border-radius: 0;
+    border-right: 1px solid $border-primary;
+    
+    &:last-child {
+      border-right: none;
+    }
+    
+    &:hover {
+      z-index: 1;
+    }
+  }
+}
+
+// Floating Action Button
+.fab {
+  @include button-base;
+  position: fixed;
+  bottom: $spacing-xl;
+  right: $spacing-xl;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: $primary-color;
+  color: $text-inverse;
+  box-shadow: $shadow-lg;
+  z-index: z(fixed);
+  
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: $shadow-xl;
+  }
+}
+
+// Icon button
+.icon-btn {
+  @include button-base;
+  padding: $spacing-sm;
+  border-radius: $radius-md;
+  background-color: transparent;
+  color: $text-secondary;
+  
+  &:hover {
+    background-color: $bg-tertiary;
+    color: $text-primary;
+  }
+  
+  &--active {
+    background-color: $primary-color;
+    color: $text-inverse;
+  }
+}
