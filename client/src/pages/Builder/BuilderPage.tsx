@@ -22,7 +22,7 @@ interface SelectedComponents {
 }
 
 function BuilderPage() {
-  const [selectedComponents, setSelectedComponents] = useState<SelectedComponents>({
+  const [selectedComponents] = useState<SelectedComponents>({
     cpu: null,
     gpu: null,
     ram: null,

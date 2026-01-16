@@ -12,7 +12,7 @@
     "type-check": "tsc --noEmit",
     "format": "prettier --write \"src/**/*.{ts,tsx,scss,css,json}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,scss,css,json}\"",
-    "pwa": "npm run build; npm run preview; start http://localhost:4173"
+    "pwa": "npm run build && npm run preview && start http://localhost:4173"
   },
   "dependencies": {
     "framer-motion": "^10.16.16",

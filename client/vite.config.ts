@@ -82,7 +82,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
-          three: ['three', '@react-three/fiber', '@react-three/drei'],
+          three: ['three'],
           ui: ['framer-motion', 'react-hot-toast']
         }
       }
@@ -91,6 +91,6 @@ export default defineConfig({
     chunkSizeWarningLimit: 1000
   },
   optimizeDeps: {
-    include: ['three', '@react-three/fiber', '@react-three/drei', 'framer-motion']
+    include: ['three', 'framer-motion']
   }
 })
