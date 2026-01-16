@@ -31,8 +31,9 @@ function BuilderPage() {
     psu: null,
     cooling: null,
     case: null,
-  })
 
+  })
+ ///sla
 
   const totalPrice = Object.values(selectedComponents).reduce(
     (sum, component) => sum + (component?.price || 0),
