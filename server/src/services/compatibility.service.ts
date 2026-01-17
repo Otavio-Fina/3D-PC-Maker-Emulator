@@ -29,7 +29,6 @@ export class CompatibilityService {
     const issues: CompatibilityIssue[] = []
     const recommendations: string[] = []
     
-    // Group components by category
     const componentMap = this.groupComponentsByCategory(components)
     
     // Check CPU-Motherboard compatibility
@@ -301,8 +300,8 @@ export class CompatibilityService {
     return requirements[category] || {}
   }
   
-  // Private helper methods
-  private groupComponentsByCategory(components: Component[]): Record<string, Component> {
+  // Public helper methods for controller access
+  public groupComponentsByCategory(components: Component[]): Record<string, Component> {
     const grouped: Record<string, Component> = {}
     
     components.forEach(component => {
@@ -312,7 +311,7 @@ export class CompatibilityService {
     return grouped
   }
   
-  private checkCPUMotherboardCompatibility(cpu: Component, motherboard: Component): { issues: CompatibilityIssue[], recommendations: string[] } {
+  public checkCPUMotherboardCompatibility(cpu: Component, motherboard: Component): { issues: CompatibilityIssue[], recommendations: string[] } {
     const issues: CompatibilityIssue[] = []
     const recommendations: string[] = []
     
@@ -331,7 +330,7 @@ export class CompatibilityService {
     return { issues, recommendations }
   }
   
-  private checkRAMMotherboardCompatibility(ram: Component, motherboard: Component): { issues: CompatibilityIssue[], recommendations: string[] } {
+  public checkRAMMotherboardCompatibility(ram: Component, motherboard: Component): { issues: CompatibilityIssue[], recommendations: string[] } {
     const issues: CompatibilityIssue[] = []
     const recommendations: string[] = []
     
@@ -350,7 +349,7 @@ export class CompatibilityService {
     return { issues, recommendations }
   }
   
-  private checkGPUCompatibility(gpu: Component, motherboard: Component): { issues: CompatibilityIssue[], recommendations: string[] } {
+  public checkGPUCompatibility(gpu: Component, motherboard: Component): { issues: CompatibilityIssue[], recommendations: string[] } {
     const issues: CompatibilityIssue[] = []
     const recommendations: string[] = []
     
@@ -369,7 +368,7 @@ export class CompatibilityService {
     return { issues, recommendations }
   }
   
-  private checkPSUAdequacy(psu: Component, components: Component[]): { issues: CompatibilityIssue[], recommendations: string[] } {
+  public checkPSUAdequacy(psu: Component, components: Component[]): { issues: CompatibilityIssue[], recommendations: string[] } {
     const issues: CompatibilityIssue[] = []
     const recommendations: string[] = []
     
@@ -395,7 +394,7 @@ export class CompatibilityService {
     return { issues, recommendations }
   }
   
-  private checkStorageCompatibility(storage: Component, motherboard: Component): { issues: CompatibilityIssue[], recommendations: string[] } {
+  public checkStorageCompatibility(storage: Component, motherboard: Component): { issues: CompatibilityIssue[], recommendations: string[] } {
     const issues: CompatibilityIssue[] = []
     const recommendations: string[] = []
     
@@ -414,7 +413,7 @@ export class CompatibilityService {
     return { issues, recommendations }
   }
   
-  private checkCoolingCompatibility(cooling: Component, cpu: Component): { issues: CompatibilityIssue[], recommendations: string[] } {
+  public checkCoolingCompatibility(cooling: Component, cpu: Component): { issues: CompatibilityIssue[], recommendations: string[] } {
     const issues: CompatibilityIssue[] = []
     const recommendations: string[] = []
     

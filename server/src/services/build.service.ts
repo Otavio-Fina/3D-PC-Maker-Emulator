@@ -111,9 +111,8 @@ export class BuildService {
     try {
       const build = await Build.create(buildData)
       
-      // Associate components if provided
       if (buildData.components) {
-        const componentIds = Object.values(buildData.components).filter(id => id)
+        const componentIds = Object.values(buildData.components).filter(id => id) as number[]
         if (componentIds.length > 0) {
           await build.setComponents(componentIds)
         }
@@ -141,9 +140,8 @@ export class BuildService {
     try {
       await build.update(updateData)
 
-      // Update component associations if provided
       if (updateData.components) {
-        const componentIds = Object.values(updateData.components).filter(id => id)
+        const componentIds = Object.values(updateData.components).filter(id => id) as number[]
         if (componentIds.length > 0) {
           await build.setComponents(componentIds)
         }
@@ -193,7 +191,6 @@ export class BuildService {
 
     const clonedBuild = await this.create(clonedData)
 
-    // Copy component associations
     if (originalBuild.components) {
       const componentIds = originalBuild.components.map((comp: any) => comp.id)
       await clonedBuild.setComponents(componentIds)
@@ -209,13 +206,9 @@ export class BuildService {
       throw createError('Build not found', 404)
     }
 
-    // This would typically use a separate likes table
-    // For simplicity, we'll just increment/decrement the likes count
     const currentLikes = build.getDataValue('likes') || 0
     
-    // In a real implementation, you'd check if user already liked
-    // and use a join table to track likes
-    const liked = true // Placeholder logic
+    const liked = true // Placeholder
     
     await build.update({
       likes: liked ? currentLikes + 1 : currentLikes - 1
@@ -275,14 +268,12 @@ export class BuildService {
     const publicBuilds = await Build.count({ where: { isPublic: true } })
     const featuredBuilds = await Build.count({ where: { isFeatured: true } })
 
-    // Most popular builds
     const popularBuilds = await Build.findAll({
       order: [['likes', 'DESC']],
       limit: 10,
       attributes: ['id', 'name', 'likes']
     })
 
-    // Recent builds
     const recentBuilds = await Build.findAll({
       order: [['createdAt', 'DESC']],
       limit: 10,

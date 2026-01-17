@@ -36,6 +36,9 @@ export class Build extends Model<BuildAttributes, BuildCreationAttributes> imple
   public performanceScore?: number
   public readonly createdAt!: Date
   public readonly updatedAt!: Date
+
+  public declare setComponents: (components: Component[] | number[]) => Promise<void>
+  public declare getComponents: () => Promise<Component[]>
 }
 
 Build.init(
@@ -159,7 +162,6 @@ Build.init(
   }
 )
 
-// Define associations
 Build.belongsToMany(Component, {
   through: 'build_components',
   as: 'components',

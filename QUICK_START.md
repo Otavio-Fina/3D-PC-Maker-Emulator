@@ -6,7 +6,6 @@
 - **npm** 8+ or **yarn** 1.22+
 - **MySQL** 8.0+ or **PostgreSQL** 13+
 - **Redis** 6.0+ (optional, for caching)
-- **Docker** & **Docker Compose** (optional, for containerized setup)
 
 ## 📋 Installation Steps
 
